@@ -86,6 +86,8 @@ export function Hero() {
             <span className="hero__rating-text">200+ brands shipped</span>
           </div>
 
+          <div className="hero__mascot-stage-mobile" id="heroMascotStageMobile" aria-hidden="true" />
+
           <div className={`hero__ctas ${ctasRevealed ? 'revealed' : ''}`} id="heroCtas">
             <PillButton
               label="Let's Talk"
@@ -106,7 +108,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero__right-spacer" aria-hidden="true" />
+        <div className="hero__right-spacer" id="heroMascotStageDesktop" aria-hidden="true" />
       </div>
     </section>
   );

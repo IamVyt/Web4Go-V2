@@ -98,27 +98,57 @@ export function Hero3DCharacter() {
     const mascotGroup = new THREE.Group();
     scene.add(mascotGroup);
 
-    // Dynamic responsive placement (right side on desktop, center on mobile)
+    // Dynamic responsive placement (right side on desktop, dedicated visual stage on mobile)
     function updateMascotPosition(w: number, h: number) {
+      if (!container) return;
       const aspect = w / h;
       const vFOV = THREE.MathUtils.degToRad(camera.fov);
       const visibleHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const visibleWidth = visibleHeight * aspect;
 
-      if (w >= 1024) {
-        // Position mascot in the right 28% zone of the visible 3D area
-        mascotGroup.position.set(visibleWidth * 0.24, -0.2, 0);
-        mascotGroup.scale.set(0.9, 0.9, 0.9);
-      } else if (w >= 768) {
-        mascotGroup.position.set(visibleWidth * 0.2, -0.3, 0);
-        mascotGroup.scale.set(0.8, 0.8, 0.8);
+      const isDesktop = w >= 1024;
+      const targetStage = isDesktop
+        ? document.getElementById('heroMascotStageDesktop')
+        : document.getElementById('heroMascotStageMobile');
+
+      if (targetStage && container) {
+        const stageRect = targetStage.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+
+        const stageCenterX = stageRect.left + stageRect.width / 2 - containerRect.left;
+        const stageCenterY = stageRect.top + stageRect.height / 2 - containerRect.top;
+
+        const targetWorldX = ((stageCenterX / containerRect.width) - 0.5) * visibleWidth;
+        const targetWorldY = (0.5 - (stageCenterY / containerRect.height)) * visibleHeight;
+
+        mascotGroup.position.set(targetWorldX, targetWorldY, 0);
+
+        if (isDesktop) {
+          mascotGroup.scale.set(0.9, 0.9, 0.9);
+        } else if (w >= 640) {
+          mascotGroup.scale.set(0.76, 0.76, 0.76);
+        } else {
+          mascotGroup.scale.set(0.68, 0.68, 0.68);
+        }
       } else {
-        mascotGroup.position.set(0, -0.8, 0);
-        mascotGroup.scale.set(0.68, 0.68, 0.68);
+        if (isDesktop) {
+          mascotGroup.position.set(visibleWidth * 0.24, -0.2, 0);
+          mascotGroup.scale.set(0.9, 0.9, 0.9);
+        } else {
+          mascotGroup.position.set(0, -0.1, 0);
+          mascotGroup.scale.set(0.68, 0.68, 0.68);
+        }
       }
     }
 
     updateMascotPosition(width, height);
+    // Double-check position after initial layout settling
+    setTimeout(() => {
+      if (container) {
+        const r = container.getBoundingClientRect();
+        updateMascotPosition(r.width || window.innerWidth, r.height || window.innerHeight);
+      }
+    }, 150);
 
     // ── 1. HEAD & VISOR ──
     const headGroup = new THREE.Group();
@@ -386,12 +416,23 @@ export function Hero3DCharacter() {
     }
 
     function onPointerDown(e: PointerEvent) {
-      // Only drag if on the right half or over mascot
-      if (e.clientX > window.innerWidth * 0.45) {
+      const isDesktop = window.innerWidth >= 1024;
+      if (isDesktop && e.clientX > window.innerWidth * 0.45) {
         isDragging = true;
         dragStartX = e.clientX;
         dragRotY = targetDragRotY;
         bounceEnergy = 0.45;
+      } else if (!isDesktop) {
+        const stage = document.getElementById('heroMascotStageMobile');
+        if (stage) {
+          const rect = stage.getBoundingClientRect();
+          if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragRotY = targetDragRotY;
+            bounceEnergy = 0.45;
+          }
+        }
       }
     }
 
