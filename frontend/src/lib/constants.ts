@@ -23,8 +23,8 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     name: 'Jasa Pembuatan Website',
     category: 'Branding',
     year: '2025',
-    description: 'A complete identity and go-to-market system for a fast-moving research startup.',
-    tags: ['Branding', 'Strategy', 'Design'],
+    description: 'Tingkatkan kredibilitas & penjualan bisnis Anda sekarang dengan website profesional yang cepat, elegan, dan siap konversi.',
+    tags: ['Branding', 'Strategi', 'Desain'],
   },
   {
     name: 'Nova Finance',
