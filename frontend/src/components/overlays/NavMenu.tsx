@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { LogoMark, XIcon } from '../icons/Icons';
 import { useClock } from '../../hooks/useClock';
 import { useApp } from '../../context/AppContext';
+import { WORK_CATEGORIES } from '../../lib/constants';
 
 const NAV_ITEMS = [
   { index: '01', label: 'Home', target: 'home' },
@@ -65,15 +66,15 @@ export function NavMenu() {
 
               {item.target === 'works' && (
                 <div className="nav-menu__subitems">
-                  {['Branding', 'Product', 'Identity', 'Mobile'].map((cat) => (
+                  {WORK_CATEGORIES.map((cat) => (
                     <button
-                      key={cat}
+                      key={cat.id}
                       type="button"
                       className="nav-menu__subitem"
-                      onClick={() => filterWork(cat)}
+                      onClick={() => filterWork(cat.id)}
                     >
                       <span className="nav-menu__subitem-dot" />
-                      {cat}
+                      {cat.label}
                     </button>
                   ))}
                 </div>

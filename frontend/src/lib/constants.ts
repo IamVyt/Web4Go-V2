@@ -21,10 +21,10 @@ export const PALETTE = {
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     name: 'Jasa Pembuatan Website',
-    category: 'Branding',
-    year: '2025',
+    category: 'Jasa',
+    year: '2026',
     description: 'Tingkatkan kredibilitas & penjualan bisnis Anda sekarang dengan website profesional yang cepat, elegan, dan siap konversi.',
-    tags: ['Branding', 'Strategi', 'Desain'],
+    tags: ['Landing Page', 'Company Profile', 'Toko Online'],
   },
   {
     name: 'Nova Finance',
@@ -50,7 +50,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
 ];
 
 export const WORK_CATEGORIES = [
-  { id: 'Branding', label: 'Branding', subtitle: 'Identity & Go-to-market systems' },
+  { id: 'Jasa', label: 'Jasa', subtitle: 'Layanan Pembuatan Website' },
   { id: 'Product', label: 'Product', subtitle: 'Web Apps & UI Systems' },
   { id: 'Identity', label: 'Identity', subtitle: 'Visual & Art Direction' },
   { id: 'Mobile', label: 'Mobile', subtitle: 'iOS & Android Applications' },
