@@ -676,7 +676,7 @@ img{display:block}
     <div class="portfolio__filter-bar" id="portfolioFilterBar">
       <button type="button" class="portfolio__filter-btn active" data-filter="all">All Works (4)</button>
       <button type="button" class="portfolio__filter-btn" data-filter="Jasa">Jasa</button>
-      <button type="button" class="portfolio__filter-btn" data-filter="Product">Product</button>
+      <button type="button" class="portfolio__filter-btn" data-filter="Produk">Produk</button>
       <button type="button" class="portfolio__filter-btn" data-filter="Identity">Identity</button>
       <button type="button" class="portfolio__filter-btn" data-filter="Mobile">Mobile</button>
     </div>
@@ -1093,7 +1093,7 @@ document.querySelectorAll('#createBand .create-band__item').forEach((el, i) => {
 // Portfolio
 const portfolioItems = [
   { name:'Jasa Pembuatan Website', cat:'Jasa', year:'2026', desc:'Tingkatkan kredibilitas & penjualan bisnis Anda sekarang dengan website profesional yang cepat, elegan, dan siap konversi.', tags:['Landing Page','Company Profile','Toko Online'] },
-  { name:'Nova Finance', cat:'Product', year:'2024', desc:'A finance platform reimagined — clear data, calm interfaces, and effortless flows.', tags:['Product Design','Web App','QA'] },
+  { name:'Produk Digital', cat:'Produk', year:'2026', desc:'Koleksi template website, source code full-stack, dan aset digital siap pakai berkualitas tinggi untuk mempercepat peluncuran proyek Anda.', tags:['Template Web','Source Code','UI Kit'] },
   { name:'Helio Studio', cat:'Identity', year:'2023', desc:'A bold visual identity and art direction system built to scale across every surface.', tags:['Brand Identity','Art Direction'] },
   { name:'Pulse Health', cat:'Mobile', year:'2023', desc:'A wellness app grounded in research, shipped end to end from concept to release.', tags:['Mobile App','UX Research','Development'] },
 ];
@@ -1105,6 +1105,13 @@ const jasaServices = [
   { name:'Website Donasi', cat:'Jasa', year:'2026', desc:'Platform penggalangan dana & donasi online transparan dengan integrasi QRIS/Transfer bank dan laporan donatur real-time.', tags:['Crowdfunding','Donasi Online','QRIS Otomatis'] },
 ];
 
+const digitalProducts = [
+  { name:'Template Landing Page', cat:'Produk', year:'2026', desc:'Koleksi template landing page modern, responsive, dan berkonversi tinggi dengan performa loading super cepat.', tags:['Next.js / Vite','Responsive','Siap Pakai'] },
+  { name:'Source Code Web App', cat:'Produk', year:'2026', desc:'Full-stack starter kit & aplikasi web siap kustomisasi lengkap dengan database, autentikasi, dan REST API.', tags:['Full-Stack','Clean Code','Dokumentasi'] },
+  { name:'UI/UX Design Kit', cat:'Produk', year:'2026', desc:'Desain sistem & komponen Figma lengkap untuk mempercepat proses pembuatan prototipe dan antarmuka web modern.', tags:['Figma File','Design System','Auto Layout'] },
+  { name:'Tema Toko Online', cat:'Produk', year:'2026', desc:'Template website e-commerce dengan antarmuka checkout yang dioptimasi untuk mendongkrak penjualan produk Anda.', tags:['E-Commerce','Mobile Friendly','Optimasi Konversi'] },
+];
+
 const portfolioGrid = document.getElementById('portfolioGrid');
 let currentPortfolioCategory = 'all';
 
@@ -1113,7 +1120,9 @@ function renderPortfolio(cat = 'all') {
   portfolioGrid.innerHTML = '';
   const filtered = cat.toLowerCase() === 'jasa' 
     ? jasaServices 
-    : (cat === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat.toLowerCase() === cat.toLowerCase()));
+    : (cat.toLowerCase() === 'produk' || cat.toLowerCase() === 'product'
+      ? digitalProducts
+      : (cat === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat.toLowerCase() === cat.toLowerCase())));
     
   filtered.forEach((item, i) => {
     const li = document.createElement('li');
@@ -1137,6 +1146,9 @@ function renderPortfolio(cat = 'all') {
     cardEl.addEventListener('click', () => {
       if (item.name === 'Jasa Pembuatan Website') {
         renderPortfolio('Jasa');
+        smoothScrollTo('works');
+      } else if (item.name === 'Produk Digital') {
+        renderPortfolio('Produk');
         smoothScrollTo('works');
       } else {
         openModal();

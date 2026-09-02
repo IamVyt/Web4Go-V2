@@ -27,11 +27,11 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     tags: ['Landing Page', 'Company Profile', 'Toko Online'],
   },
   {
-    name: 'Nova Finance',
-    category: 'Product',
-    year: '2024',
-    description: 'A finance platform reimagined — clear data, calm interfaces, and effortless flows.',
-    tags: ['Product Design', 'Web App', 'QA'],
+    name: 'Produk Digital',
+    category: 'Produk',
+    year: '2026',
+    description: 'Koleksi template website, source code full-stack, dan aset digital siap pakai berkualitas tinggi untuk mempercepat peluncuran proyek Anda.',
+    tags: ['Template Web', 'Source Code', 'UI Kit'],
   },
   {
     name: 'Helio Studio',
@@ -80,9 +80,40 @@ export const JASA_SERVICES: PortfolioItem[] = [
   },
 ];
 
+export const DIGITAL_PRODUCTS: PortfolioItem[] = [
+  {
+    name: 'Template Landing Page',
+    category: 'Produk',
+    year: '2026',
+    description: 'Koleksi template landing page modern, responsive, dan berkonversi tinggi dengan performa loading super cepat.',
+    tags: ['Next.js / Vite', 'Responsive', 'Siap Pakai'],
+  },
+  {
+    name: 'Source Code Web App',
+    category: 'Produk',
+    year: '2026',
+    description: 'Full-stack starter kit & aplikasi web siap kustomisasi lengkap dengan database, autentikasi, dan REST API.',
+    tags: ['Full-Stack', 'Clean Code', 'Dokumentasi'],
+  },
+  {
+    name: 'UI/UX Design Kit',
+    category: 'Produk',
+    year: '2026',
+    description: 'Desain sistem & komponen Figma lengkap untuk mempercepat proses pembuatan prototipe dan antarmuka web modern.',
+    tags: ['Figma File', 'Design System', 'Auto Layout'],
+  },
+  {
+    name: 'Tema Toko Online',
+    category: 'Produk',
+    year: '2026',
+    description: 'Template website e-commerce dengan antarmuka checkout yang dioptimasi untuk mendongkrak penjualan produk Anda.',
+    tags: ['E-Commerce', 'Mobile Friendly', 'Optimasi Konversi'],
+  },
+];
+
 export const WORK_CATEGORIES = [
   { id: 'Jasa', label: 'Jasa', subtitle: 'Layanan Pembuatan Website' },
-  { id: 'Product', label: 'Product', subtitle: 'Web Apps & UI Systems' },
+  { id: 'Produk', label: 'Produk', subtitle: 'Aset & Template Digital' },
   { id: 'Identity', label: 'Identity', subtitle: 'Visual & Art Direction' },
   { id: 'Mobile', label: 'Mobile', subtitle: 'iOS & Android Applications' },
 ] as const;

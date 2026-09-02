@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { LogoMark, ArrowUpRight } from '../icons/Icons';
-import { PORTFOLIO_ITEMS, WORK_CATEGORIES, JASA_SERVICES } from '../../lib/constants';
+import { PORTFOLIO_ITEMS, WORK_CATEGORIES, JASA_SERVICES, DIGITAL_PRODUCTS } from '../../lib/constants';
 import { useApp } from '../../context/AppContext';
 import type { PortfolioItem } from '../../types';
 
@@ -40,9 +40,12 @@ export function Portfolio() {
   }, []);
 
   const isJasaCategory = selectedCategory?.toLowerCase() === 'jasa';
+  const isProdukCategory = selectedCategory?.toLowerCase() === 'produk' || selectedCategory?.toLowerCase() === 'product';
 
   const filteredItems: PortfolioItem[] = isJasaCategory
     ? JASA_SERVICES
+    : isProdukCategory
+    ? DIGITAL_PRODUCTS
     : selectedCategory
     ? PORTFOLIO_ITEMS.filter((item) => item.category.toLowerCase() === selectedCategory.toLowerCase())
     : PORTFOLIO_ITEMS;
@@ -50,6 +53,12 @@ export function Portfolio() {
   const handleCardClick = (item: PortfolioItem) => {
     if (item.name === 'Jasa Pembuatan Website') {
       setSelectedCategory('Jasa');
+      const worksSection = document.getElementById('works');
+      if (worksSection) {
+        worksSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (item.name === 'Produk Digital') {
+      setSelectedCategory('Produk');
       const worksSection = document.getElementById('works');
       if (worksSection) {
         worksSection.scrollIntoView({ behavior: 'smooth' });
