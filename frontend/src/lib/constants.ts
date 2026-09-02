@@ -20,7 +20,7 @@ export const PALETTE = {
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    name: 'Aster Labs',
+    name: 'Jasa Pembuatan Website',
     category: 'Branding',
     year: '2025',
     description: 'A complete identity and go-to-market system for a fast-moving research startup.',
