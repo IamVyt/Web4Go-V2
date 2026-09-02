@@ -10,7 +10,8 @@ interface AppContextType {
   openNav: () => void;
   closeNav: () => void;
   modalOpen: boolean;
-  openModal: () => void;
+  modalInitialProject: string;
+  openModal: (initialProject?: string) => void;
   closeModal: () => void;
   handleNav: (target: string) => void;
   selectedCategory: string | null;
@@ -31,6 +32,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [introReady, setIntroReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalInitialProject, setModalInitialProject] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const [currentView, setCurrentView] = useState<AppView>('home');
@@ -70,7 +72,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     startScroll();
   }, []);
 
-  const openModal = useCallback(() => {
+  const openModal = useCallback((initialProject?: string) => {
+    if (initialProject) {
+      setModalInitialProject(initialProject);
+    } else {
+      setModalInitialProject('');
+    }
     setModalOpen(true);
     stopScroll();
   }, []);
@@ -142,7 +149,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     <AppContext.Provider value={{
       introReady, setIntroReady,
       navOpen, openNav, closeNav,
-      modalOpen, openModal, closeModal,
+      modalOpen, modalInitialProject, openModal, closeModal,
       handleNav,
       selectedCategory, setSelectedCategory,
       filterWork,

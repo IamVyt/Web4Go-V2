@@ -1106,10 +1106,17 @@ const jasaServices = [
 ];
 
 const digitalProducts = [
-  { name:'Template Landing Page', cat:'Produk', year:'2026', desc:'Koleksi template landing page modern, responsive, dan berkonversi tinggi dengan performa loading super cepat.', tags:['Next.js / Vite','Responsive','Siap Pakai'] },
-  { name:'Source Code Web App', cat:'Produk', year:'2026', desc:'Full-stack starter kit & aplikasi web siap kustomisasi lengkap dengan database, autentikasi, dan REST API.', tags:['Full-Stack','Clean Code','Dokumentasi'] },
-  { name:'UI/UX Design Kit', cat:'Produk', year:'2026', desc:'Desain sistem & komponen Figma lengkap untuk mempercepat proses pembuatan prototipe dan antarmuka web modern.', tags:['Figma File','Design System','Auto Layout'] },
-  { name:'Tema Toko Online', cat:'Produk', year:'2026', desc:'Template website e-commerce dengan antarmuka checkout yang dioptimasi untuk mendongkrak penjualan produk Anda.', tags:['E-Commerce','Mobile Friendly','Optimasi Konversi'] },
+  { name:'Toko Online / E-Commerce', cat:'Produk', year:'2026', price:'Rp 249.000', badge:'Best Seller', desc:'Website toko online siap pakai dengan sistem keranjang belanja, checkout instan WhatsApp & Payment Gateway, serta katalog produk responsif.', tags:['E-Commerce','Payment Gateway','Katalog Produk','Notif WhatsApp'] },
+  { name:'Company Profile / Bisnis', cat:'Produk', year:'2026', price:'Rp 199.000', badge:'Popular', desc:'Template company profile elegan & berkelas untuk meningkatkan reputasi perusahaan, menampilkan profil tim, portofolio, dan layanan bisnis.', tags:['Company Profile','Corporate','Multi-Halaman','SEO Ready'] },
+  { name:'Portofolio Kreatif', cat:'Produk', year:'2026', price:'Rp 179.000', badge:'Trending', desc:'Showcase portofolio visual interaktif untuk desainer, fotografer, dan agensi kreatif dengan animasi micro-interaction yang memukau.', tags:['Portofolio','Dark Mode','Grid Showcase','Smooth Scroll'] },
+  { name:'SaaS / App Landing Page', cat:'Produk', year:'2026', price:'Rp 229.000', badge:'Hot', desc:'Landing page konversi tinggi untuk startup, aplikasi mobile, dan produk digital SaaS lengkap dengan tabel pricing, FAQ, dan testimoni.', tags:['SaaS Landing','Pricing Table','Feature Grid','High Conversion'] },
+  { name:'Undangan Digital', cat:'Produk', year:'2026', price:'Rp 149.000', badge:'Favorit', desc:'Website undangan pernikahan & acara digital dengan fitur RSVP online, hitung mundur (countdown), galeri foto, peta lokasi, dan amplop digital.', tags:['Undangan Digital','RSVP & Ucapan','Amplop Digital','Google Maps'] },
+  { name:'F&B / Menu Restoran', cat:'Produk', year:'2026', price:'Rp 189.000', badge:'New', desc:'Katalog menu digital interaktif scan QR code untuk cafe & resto, dilengkapi filter kategori makanan/minuman dan pemesanan via meja.', tags:['Menu QR Code','F&B Catalog','Filter Kategori','Order WhatsApp'] },
+  { name:'Kelas Online / LMS', cat:'Produk', year:'2026', price:'Rp 279.000', badge:'Pro', desc:'Platform kursus & materi edukasi online lengkap dengan preview modul video, silabus belajar terstruktur, dan halaman pendaftaran member.', tags:['LMS Platform','Modul Video','Silabus Interaktif','Member Area'] },
+  { name:'Listing Properti', cat:'Produk', year:'2026', price:'Rp 239.000', badge:'Featured', desc:'Website katalog properti modern untuk agen & developer dengan filter harga, lokasi, tipe rumah, serta tombol kontak agen instan.', tags:['Listing Properti','Filter Lokasi & Harga','Spesifikasi Unit','Direct WhatsApp'] },
+  { name:'Link-in-Bio', cat:'Produk', year:'2026', price:'Rp 119.000', badge:'Lite', desc:'Halaman bio link ultra-cepat untuk creator & brand, menggabungkan semua link media sosial, jualan produk, dan portofolio dalam 1 halaman.', tags:['Link-in-Bio','Social Hub','Mobile First','Ultra Fast'] },
+  { name:'Portal Berita', cat:'Produk', year:'2026', price:'Rp 259.000', badge:'Editorial', desc:'Portal media berita & artikel online dengan layout majalah digital modern, breaking news ticker, slot iklan terintegrasi, dan kategori topik.', tags:['Portal Berita','Magazine Grid','Breaking News','AdSense Ready'] },
+  { name:'Directory Bisnis', cat:'Produk', year:'2026', price:'Rp 249.000', badge:'Directory', desc:'Website direktori listing bisnis lokal & ulasan layanan lengkap dengan pencarian kategori, maps interaktif, dan nomor kontak terverifikasi.', tags:['Direktori Bisnis','Search & Filter','Rating & Review','Verified Badge'] },
 ];
 
 const portfolioGrid = document.getElementById('portfolioGrid');
@@ -1118,19 +1125,23 @@ let currentPortfolioCategory = 'all';
 function renderPortfolio(cat = 'all') {
   currentPortfolioCategory = cat;
   portfolioGrid.innerHTML = '';
+  const isProd = cat.toLowerCase() === 'produk' || cat.toLowerCase() === 'product';
   const filtered = cat.toLowerCase() === 'jasa' 
     ? jasaServices 
-    : (cat.toLowerCase() === 'produk' || cat.toLowerCase() === 'product'
+    : (isProd
       ? digitalProducts
       : (cat === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat.toLowerCase() === cat.toLowerCase())));
     
   filtered.forEach((item, i) => {
     const li = document.createElement('li');
     li.className = 'portfolio__card-wrap revealed';
-    li.innerHTML = `<article class="portfolio__card" role="button" tabindex="0">
+    li.innerHTML = `<article class="portfolio__card ${isProd ? 'portfolio__card--product' : ''}" role="button" tabindex="0">
       <div class="portfolio__card-meta">
-        <span>${item.cat} — ${item.year}</span>
-        <span class="portfolio__card-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+        <div class="portfolio__card-meta-left">
+          <span>${item.cat} — ${item.year}</span>
+          ${item.badge ? `<span class="product-badge">${item.badge}</span>` : ''}
+        </div>
+        ${item.price ? `<div class="product-pricing"><span class="product-price">${item.price}</span></div>` : `<span class="portfolio__card-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>`}
       </div>
       <div class="portfolio__card-center">
         <span class="portfolio__card-logo"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M24 2c2.2 13.8 7.9 19.6 22 22-14.1 2.4-19.8 8.2-22 22-2.2-13.8-7.9-19.6-22-22 14.1-2.4 19.8-8.2 22-22Z"/></svg><span class="reg">®</span></span>
@@ -1139,6 +1150,10 @@ function renderPortfolio(cat = 'all') {
         <h3>${item.name}</h3>
         <p>${item.desc}</p>
         <div class="portfolio__card-tags">${item.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('')}</div>
+        ${isProd ? `<div class="product-actions">
+          <button type="button" class="product-card__btn product-card__btn--demo" onclick="event.stopPropagation(); alert('Live demo preview untuk: ' + '${item.name}');">Lihat Demo</button>
+          <button type="button" class="product-card__btn product-card__btn--buy" onclick="event.stopPropagation(); openModal();">Beli Sekarang</button>
+        </div>` : ''}
       </div>
     </article>`;
     

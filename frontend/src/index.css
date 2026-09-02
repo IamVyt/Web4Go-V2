@@ -290,6 +290,68 @@ html{font-size:clamp(14px,calc(13.6px + 0.125vw),16px)}
 .portfolio__card-tags{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.5rem}
 .tag-chip{display:inline-flex;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:9999px;padding:.5rem 1rem;font-size:.875rem}
 
+/* Product Cards & Catalog Actions */
+.portfolio__card--product{min-height:28rem;padding-bottom:2rem}
+@media(min-width:640px){.portfolio__card--product{min-height:31rem}}
+
+.portfolio__card-meta-left{display:flex;align-items:center;gap:.625rem;flex-wrap:wrap}
+.product-badge{display:inline-flex;align-items:center;padding:.2rem .55rem;border-radius:9999px;background:rgba(180,229,13,.15);border:1px solid rgba(180,229,13,.4);color:#B4E50D;font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+
+.product-pricing{display:flex;align-items:baseline;gap:.5rem}
+.product-price{font-size:1.125rem;font-weight:700;color:#B4E50D;letter-spacing:-.01em}
+.product-price-orig{font-size:.8125rem;color:rgba(255,255,255,.4);text-decoration:line-through}
+
+.product-actions{margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.625rem}
+.product-card__btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.625rem 1rem;border-radius:9999px;font-size:.8125rem;font-weight:600;cursor:pointer;transition:all .25s cubic-bezier(.2,.8,.2,1);text-decoration:none}
+.product-card__btn--demo{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(8px)}
+.product-card__btn--demo:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+.product-card__btn--buy{background:#B4E50D;border:1px solid #B4E50D;color:#0a0a0a}
+.product-card__btn--buy:hover{background:#c3f518;box-shadow:0 0 16px rgba(180,229,13,.4);transform:translateY(-2px)}
+
+/* Demo Modal */
+.demo-modal-backdrop{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:1rem}
+.demo-modal{width:100%;max-width:64rem;max-height:90vh;background:#0f0f0f;border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.demo-modal__header{padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;background:#141414}
+.demo-modal__info{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.demo-modal__title-wrap{display:flex;align-items:center;gap:.5rem}
+.demo-modal__title-wrap h4{font-size:1.125rem;font-weight:600;color:#fff;margin:0}
+.demo-modal__price-wrap{display:flex;align-items:baseline;gap:.375rem}
+.demo-modal__devices{display:flex;background:rgba(255,255,255,.06);border-radius:9999px;padding:.25rem;gap:.25rem}
+.demo-device-btn{padding:.35rem .75rem;border-radius:9999px;font-size:.75rem;font-weight:500;color:rgba(255,255,255,.6);background:transparent;border:none;cursor:pointer;transition:all .2s}
+.demo-device-btn.active{background:#fff;color:#000;font-weight:600}
+.demo-modal__actions{display:flex;align-items:center;gap:.75rem}
+.demo-modal__close{width:2.25rem;height:2.25rem;border-radius:9999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.demo-modal__close:hover{background:rgba(255,255,255,.2)}
+.demo-modal__viewport{flex:1;overflow-y:auto;background:#080808;display:flex;flex-direction:column;align-items:center;padding:1.25rem;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.demo-modal__viewport--desktop .demo-preview-frame{width:100%}
+.demo-modal__viewport--tablet .demo-preview-frame{width:48rem;max-width:100%}
+.demo-modal__viewport--mobile .demo-preview-frame{width:24rem;max-width:100%}
+.demo-browser-bar{width:100%;max-width:100%;display:flex;align-items:center;justify-content:space-between;padding:.5rem .875rem;background:#181818;border-radius:.75rem .75rem 0 0;border:1px solid rgba(255,255,255,.08);border-bottom:none}
+.demo-browser-dots{display:flex;gap:.35rem}
+.demo-browser-dots .dot{width:.55rem;height:.55rem;border-radius:9999px}
+.demo-browser-dots .dot--red{background:#ff5f56}
+.demo-browser-dots .dot--yellow{background:#ffbd2e}
+.demo-browser-dots .dot--green{background:#27c93f}
+.demo-browser-url{display:flex;align-items:center;gap:.35rem;font-size:.75rem;color:rgba(255,255,255,.5);background:rgba(0,0,0,.4);padding:.2rem .75rem;border-radius:.375rem}
+.demo-preview-frame{background:#121212;border:1px solid rgba(255,255,255,.08);border-radius:0 0 .875rem .875rem;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.demo-preview-content{padding:2.5rem 1.5rem;display:flex;flex-direction:column;gap:2rem}
+.demo-hero-banner{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:2rem 1rem;background:radial-gradient(circle at 50% 0%,rgba(180,229,13,.12) 0%,transparent 70%);border-radius:1rem}
+.demo-hero-pill{font-size:.75rem;font-weight:600;padding:.25rem .75rem;background:rgba(180,229,13,.15);border:1px solid rgba(180,229,13,.3);color:#B4E50D;border-radius:9999px}
+.demo-hero-banner h2{font-size:1.875rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+.demo-hero-banner p{max-width:32rem;color:rgba(255,255,255,.7);font-size:.9375rem;line-height:1.5}
+.demo-hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.demo-tag{font-size:.75rem;padding:.25rem .625rem;border-radius:9999px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.12)}
+.demo-cta-row{margin-top:.5rem}
+.demo-primary-btn{padding:.75rem 1.5rem;background:#B4E50D;color:#0a0a0a;border:none;border-radius:9999px;font-weight:700;font-size:.875rem;cursor:pointer;transition:all .25s}
+.demo-primary-btn:hover{background:#c7fc13;box-shadow:0 0 20px rgba(180,229,13,.5);transform:scale(1.03)}
+.demo-features-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:640px){.demo-features-grid{grid-template-columns:repeat(3,1fr)}}
+.demo-feature-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:1.25rem;border-radius:.875rem;display:flex;flex-direction:column;gap:.5rem}
+.demo-feature-icon{font-size:1.5rem}
+.demo-feature-card h5{font-size:.9375rem;font-weight:600;color:#fff;margin:0}
+.demo-feature-card p{font-size:.8125rem;color:rgba(255,255,255,.55);line-height:1.4;margin:0}
+
+
 /* ── SERVICES / WORKFLOW (ALUR PROSES BIKIN WEBSITE) ── */
 .services{background:#fff;border-top:1px solid #e6e5e2}
 .services__inner{padding:3.5rem 1.25rem}

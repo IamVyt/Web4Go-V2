@@ -1,9 +1,15 @@
 export interface PortfolioItem {
+  id?: string;
   name: string;
   category: string;
   year: string;
   description: string;
   tags: string[];
+  price?: string;
+  originalPrice?: string;
+  badge?: string;
+  demoUrl?: string;
+  isProduct?: boolean;
 }
 
 export interface ServiceItem {
