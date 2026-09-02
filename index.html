@@ -1097,17 +1097,28 @@ const portfolioItems = [
   { name:'Helio Studio', cat:'Identity', year:'2023', desc:'A bold visual identity and art direction system built to scale across every surface.', tags:['Brand Identity','Art Direction'] },
   { name:'Pulse Health', cat:'Mobile', year:'2023', desc:'A wellness app grounded in research, shipped end to end from concept to release.', tags:['Mobile App','UX Research','Development'] },
 ];
+
+const jasaServices = [
+  { name:'Blog Pribadi', cat:'Jasa', year:'2026', desc:'Platform personal blog profesional dengan tampilan modern, cepat, dan teroptimasi SEO untuk berbagi wawasan serta portofolio.', tags:['Personal Blog','AdSense Ready','SEO Friendly'] },
+  { name:'Website Perusahaan', cat:'Jasa', year:'2026', desc:'Company profile berkelas tinggi untuk memikat klien baru, meningkatkan kredibilitas, dan menampilkan profil bisnis Anda secara profesional.', tags:['Company Profile','Corporate','Lead Generation'] },
+  { name:'Toko Online', cat:'Jasa', year:'2026', desc:'Website e-commerce siap jualan dengan integrasi pembayaran otomatis, katalog produk responsif, dan sistem checkout instan.', tags:['E-Commerce','Payment Gateway','Katalog Produk'] },
+  { name:'Website Donasi', cat:'Jasa', year:'2026', desc:'Platform penggalangan dana & donasi online transparan dengan integrasi QRIS/Transfer bank dan laporan donatur real-time.', tags:['Crowdfunding','Donasi Online','QRIS Otomatis'] },
+];
+
 const portfolioGrid = document.getElementById('portfolioGrid');
 let currentPortfolioCategory = 'all';
 
 function renderPortfolio(cat = 'all') {
   currentPortfolioCategory = cat;
   portfolioGrid.innerHTML = '';
-  const filtered = cat === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat.toLowerCase() === cat.toLowerCase());
+  const filtered = cat.toLowerCase() === 'jasa' 
+    ? jasaServices 
+    : (cat === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat.toLowerCase() === cat.toLowerCase()));
+    
   filtered.forEach((item, i) => {
     const li = document.createElement('li');
     li.className = 'portfolio__card-wrap revealed';
-    li.innerHTML = `<article class="portfolio__card">
+    li.innerHTML = `<article class="portfolio__card" role="button" tabindex="0">
       <div class="portfolio__card-meta">
         <span>${item.cat} — ${item.year}</span>
         <span class="portfolio__card-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
@@ -1121,6 +1132,17 @@ function renderPortfolio(cat = 'all') {
         <div class="portfolio__card-tags">${item.tags.map(t=>`<span class="tag-chip">${t}</span>`).join('')}</div>
       </div>
     </article>`;
+    
+    const cardEl = li.querySelector('.portfolio__card');
+    cardEl.addEventListener('click', () => {
+      if (item.name === 'Jasa Pembuatan Website') {
+        renderPortfolio('Jasa');
+        smoothScrollTo('works');
+      } else {
+        openModal();
+      }
+    });
+    
     portfolioGrid.appendChild(li);
   });
 
@@ -1158,10 +1180,10 @@ portfolioH2Obs.observe(document.getElementById('portfolioH2Wrap'));
 
 // Services
 const serviceItems = [
-  { idx:'01', title:'Blog Pribadi', desc:'Website personal branding, artikel, & portofolio karya kreatif.' },
-  { idx:'02', title:'Website Perusahaan', desc:'Website korporat modern untuk meningkatkan kredibilitas & prospek bisnis.' },
-  { idx:'03', title:'Toko Online', desc:'Platform katalog produk & transaksi penjualan otomatis 24/7.' },
-  { idx:'04', title:'Website Donasi', desc:'Platform penggalangan dana & donasi online transparan dan aman.' },
+  { idx:'01', title:'Software Development', desc:'Scalable web & mobile products built to last.' },
+  { idx:'02', title:'Product Design', desc:'Interfaces that feel effortless and look sharp.' },
+  { idx:'03', title:'Quality Assurance', desc:'Rigorous testing for flawless, confident releases.' },
+  { idx:'04', title:'Consulting', desc:'Strategy and direction for ambitious teams.' },
 ];
 const servicesList = document.getElementById('servicesList');
 serviceItems.forEach((s, i) => {

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { LogoMark, ArrowUpRight } from '../icons/Icons';
-import { PORTFOLIO_ITEMS, WORK_CATEGORIES } from '../../lib/constants';
+import { PORTFOLIO_ITEMS, WORK_CATEGORIES, JASA_SERVICES } from '../../lib/constants';
 import { useApp } from '../../context/AppContext';
-import { smoothScrollTo } from '../../lib/scroll';
+import type { PortfolioItem } from '../../types';
 
 export function Portfolio() {
   const { selectedCategory, setSelectedCategory, openModal } = useApp();
@@ -39,15 +39,23 @@ export function Portfolio() {
     return () => obs.disconnect();
   }, []);
 
-  const filteredItems = selectedCategory
+  const isJasaCategory = selectedCategory?.toLowerCase() === 'jasa';
+
+  const filteredItems: PortfolioItem[] = isJasaCategory
+    ? JASA_SERVICES
+    : selectedCategory
     ? PORTFOLIO_ITEMS.filter((item) => item.category.toLowerCase() === selectedCategory.toLowerCase())
     : PORTFOLIO_ITEMS;
 
-  const handleCardClick = (item: (typeof PORTFOLIO_ITEMS)[number]) => {
-    if (item.category.toLowerCase() === 'jasa' || item.name.toLowerCase().includes('jasa')) {
-      smoothScrollTo('services');
+  const handleCardClick = (item: PortfolioItem) => {
+    if (item.name === 'Jasa Pembuatan Website') {
+      setSelectedCategory('Jasa');
+      const worksSection = document.getElementById('works');
+      if (worksSection) {
+        worksSection.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
-      openModal(`Konsultasi Layanan: ${item.name} (${item.category})`);
+      openModal();
     }
   };
 
@@ -105,7 +113,7 @@ export function Portfolio() {
               style={{ transitionDelay: `${i * 90}ms` }}
             >
               <article
-                className="portfolio__card portfolio__card--clickable"
+                className="portfolio__card"
                 onClick={() => handleCardClick(item)}
                 role="button"
                 tabIndex={0}
@@ -115,7 +123,6 @@ export function Portfolio() {
                     handleCardClick(item);
                   }
                 }}
-                aria-label={`Lihat detail ${item.name}`}
               >
                 <div className="portfolio__card-meta">
                   <span>

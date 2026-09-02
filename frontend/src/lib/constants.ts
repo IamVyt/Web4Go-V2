@@ -1,4 +1,4 @@
-import type { PortfolioItem, ServiceItem, WebsitePackageItem, StatItem, CardItem, NavItem } from '../types';
+import type { PortfolioItem, ServiceItem, StatItem, CardItem, NavItem } from '../types';
 
 export const ASSET_BASE_URL = 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68';
 
@@ -49,75 +49,43 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
 ];
 
+export const JASA_SERVICES: PortfolioItem[] = [
+  {
+    name: 'Blog Pribadi',
+    category: 'Jasa',
+    year: '2026',
+    description: 'Platform personal blog profesional dengan tampilan modern, cepat, dan teroptimasi SEO untuk berbagi wawasan serta portofolio.',
+    tags: ['Personal Blog', 'AdSense Ready', 'SEO Friendly'],
+  },
+  {
+    name: 'Website Perusahaan',
+    category: 'Jasa',
+    year: '2026',
+    description: 'Company profile berkelas tinggi untuk memikat klien baru, meningkatkan kredibilitas, dan menampilkan profil bisnis Anda secara profesional.',
+    tags: ['Company Profile', 'Corporate', 'Lead Generation'],
+  },
+  {
+    name: 'Toko Online',
+    category: 'Jasa',
+    year: '2026',
+    description: 'Website e-commerce siap jualan dengan integrasi pembayaran otomatis, katalog produk responsif, dan sistem checkout instan.',
+    tags: ['E-Commerce', 'Payment Gateway', 'Katalog Produk'],
+  },
+  {
+    name: 'Website Donasi',
+    category: 'Jasa',
+    year: '2026',
+    description: 'Platform penggalangan dana & donasi online transparan dengan integrasi QRIS/Transfer bank dan laporan donatur real-time.',
+    tags: ['Crowdfunding', 'Donasi Online', 'QRIS Otomatis'],
+  },
+];
+
 export const WORK_CATEGORIES = [
   { id: 'Jasa', label: 'Jasa', subtitle: 'Layanan Pembuatan Website' },
   { id: 'Product', label: 'Product', subtitle: 'Web Apps & UI Systems' },
   { id: 'Identity', label: 'Identity', subtitle: 'Visual & Art Direction' },
   { id: 'Mobile', label: 'Mobile', subtitle: 'iOS & Android Applications' },
 ] as const;
-
-export const WEBSITE_PACKAGES: WebsitePackageItem[] = [
-  {
-    id: 'blog-pribadi',
-    title: 'Blog Pribadi',
-    subtitle: 'Personal Branding & Portofolio Kreator',
-    badge: 'Populer untuk Personal',
-    description: 'Website personal modern, estetik, dan berkecepatan tinggi untuk membangun reputasi profesional, membagikan artikel inspiratif, dan memajang portofolio karya terbaik Anda.',
-    tags: ['CMS Artikel Mudah', 'SEO Ready', 'Super Cepat', 'Desain Estetik'],
-    features: [
-      'Desain elegan & responsif sempurna di Smartphone, Tablet, dan Laptop',
-      'Dashboard admin mudah untuk menulis & kelola artikel tanpa koding',
-      'Optimasi SEO on-page terstruktur agar cepat nangkring di Google',
-      'Integrasi tombol sosial media, form kontak, & newsletter pembaca',
-    ],
-    recommendedFor: 'Penulis, Konten Kreator, Profesional, Freelancer, & Konsultan',
-  },
-  {
-    id: 'website-perusahaan',
-    title: 'Website Perusahaan',
-    subtitle: 'Company Profile & Profil Korporat Bisnis',
-    badge: 'Pilihan Utama Bisnis',
-    description: 'Website profil perusahaan berstandar internasional yang mencerminkan kredibilitas tinggi, memikat calon klien/mitra bisnis, dan mempresentasikan solusi layanan secara profesional.',
-    tags: ['Domain & SSL', 'Email Bisnis Resmi', 'Multi Halaman', 'WhatsApp Chat'],
-    features: [
-      'Struktur halaman lengkap: Tentang Perusahaan, Layanan, Tim, Portofolio, & Kontak',
-      'Setup Custom Domain (.com / .co.id) & Email Bisnis resmi (nama@perusahaan.com)',
-      'Desain UI/UX eksklusif mencerminkan identitas korporat terpercaya',
-      'Integrasi Google Maps, formulir penawaran, & floating WhatsApp chat',
-    ],
-    recommendedFor: 'PT, CV, Startup, Firma Hukum, Kontraktor, Klinik, B2B, & Lembaga Bisnis',
-  },
-  {
-    id: 'toko-online',
-    title: 'Toko Online',
-    subtitle: 'E-Commerce & Sistem Belanja Otomatis',
-    badge: 'Siap Konversi Penjualan',
-    description: 'Platform jualan online otomatis mandiri tanpa potongan komisi pihak ketiga, lengkap dengan etalase produk interaktif, kalkulator ongkir otomatis, dan alur checkout super praktis.',
-    tags: ['Katalog Produk', 'Hitung Ongkir Otomatis', 'Checkout WhatsApp/Payment', 'Manajemen Stok'],
-    features: [
-      'Katalog produk tak terbatas dengan variasi warna/ukuran & galeri foto',
-      'Cek ongkos kirim otomatis terhubung ekspedisi (JNE, J&T, SiCepat, dll)',
-      'Sistem checkout langsung ke WhatsApp admin atau Payment Gateway otomatis',
-      'Panel pengelolaan stok, order masuk, dan laporan penjualan rapi',
-    ],
-    recommendedFor: 'Brand Fashion, Kuliner/F&B, Skincare, Retail, & UMKM Penjual Produk',
-  },
-  {
-    id: 'website-donasi',
-    title: 'Website Donasi',
-    subtitle: 'Platform Crowdfunding & Lembaga Sosial',
-    badge: 'Transparan & Terpercaya',
-    description: 'Sistem penggalangan dana terpercaya untuk yayasan, masjid, dan organisasi sosial dengan integrasi pembayaran donasi instan, laporan transparansi penyaluran, dan kwitansi otomatis.',
-    tags: ['Donasi QRIS Instan', 'Progress Target Dana', 'Laporan Real-time', 'Kwitansi Digital'],
-    features: [
-      'Donasi instan via QRIS, Virtual Account bank, dan e-wallet (GoPay, OVO, Dana)',
-      'Widget progress bar pencapaian dana & update kabar penyaluran berkala',
-      'Daftar donatur transparan dengan opsi donasi anonim (Hamba Allah)',
-      'Generate kwitansi/sertifikat donasi otomatis langsung ke WhatsApp/Email donatur',
-    ],
-    recommendedFor: 'Yayasan Amal, Panti Asuhan, Komunitas Sosial, Rumah Ibadah, & Program Kemanusiaan',
-  },
-];
 
 export const SERVICE_ITEMS: ServiceItem[] = [
   {
