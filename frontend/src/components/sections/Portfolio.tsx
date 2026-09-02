@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LogoMark, ArrowUpRight } from '../icons/Icons';
 import { PORTFOLIO_ITEMS, WORK_CATEGORIES } from '../../lib/constants';
 import { useApp } from '../../context/AppContext';
+import { smoothScrollTo } from '../../lib/scroll';
 
 export function Portfolio() {
   const { selectedCategory, setSelectedCategory } = useApp();
@@ -37,6 +38,10 @@ export function Portfolio() {
 
     return () => obs.disconnect();
   }, []);
+
+  const handleCardClick = () => {
+    smoothScrollTo('services');
+  };
 
   const filteredItems = selectedCategory
     ? PORTFOLIO_ITEMS.filter((item) => item.category.toLowerCase() === selectedCategory.toLowerCase())
@@ -95,7 +100,14 @@ export function Portfolio() {
               className={`portfolio__card-wrap ${cardsRevealed ? 'revealed' : ''}`}
               style={{ transitionDelay: `${i * 90}ms` }}
             >
-              <article className="portfolio__card">
+              <article
+                className="portfolio__card portfolio__card--clickable"
+                tabIndex={0}
+                role="button"
+                onClick={handleCardClick}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardClick()}
+                aria-label={`Buka layanan ${item.name}`}
+              >
                 <div className="portfolio__card-meta">
                   <span>
                     {item.category} — {item.year}

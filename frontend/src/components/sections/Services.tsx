@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from '../icons/Icons';
 import { Eyebrow } from '../ui/Eyebrow';
+import { PillButton } from '../ui/PillButton';
 import { SERVICE_ITEMS } from '../../lib/constants';
+import { useApp } from '../../context/AppContext';
 
 export function Services() {
+  const { openModal } = useApp();
   const [eyebrowRevealed, setEyebrowRevealed] = useState(false);
   const [h2Revealed, setH2Revealed] = useState(false);
   const [rowsRevealed, setRowsRevealed] = useState(false);
@@ -50,7 +53,7 @@ export function Services() {
           id="servicesEyebrow"
           ref={eyebrowRef}
         >
-          <Eyebrow label="Alur & Proses Kerja" tone="dark" />
+          <Eyebrow label="Pilihan Jasa & Layanan" tone="dark" />
         </div>
 
         <div className="services__h2-wrap" id="servicesH2Wrap" ref={h2Ref}>
@@ -60,10 +63,13 @@ export function Services() {
                 className={`line-inner ${h2Revealed ? 'revealed' : ''}`}
                 style={{ transitionDelay: '120ms' }}
               >
-                Bagaimana proses bikin website di Web4Go?
+                Pilihan Jasa Pembuatan Website
               </span>
             </span>
           </h2>
+          <p className="services__intro-text">
+            Pilih jenis website yang sesuai dengan kebutuhan Anda. Kami merancang setiap website dengan desain eksklusif, performa super cepat, dan siap melejitkan bisnis Anda.
+          </p>
         </div>
 
         <ul id="servicesList" ref={listRef} className="services__list">
@@ -76,10 +82,12 @@ export function Services() {
                 className={`services__row-wrap ${isOpen ? 'active' : ''} ${rowsRevealed ? 'revealed' : ''}`}
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                <button
-                  type="button"
+                <div
                   className={`services__row-link ${isOpen ? 'services__row-link--active' : ''}`}
                   onClick={() => toggleStep(service.index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleStep(service.index)}
                   aria-expanded={isOpen}
                 >
                   <span className="services__index">{service.index}</span>
@@ -106,6 +114,18 @@ export function Services() {
                             ))}
                           </div>
                         )}
+                        <div
+                          className="services__cta-wrap"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <PillButton
+                            label={`Konsultasikan ${service.title}`}
+                            variant="dark"
+                            withArrow
+                            arrowDir="right"
+                            onClick={openModal}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -113,7 +133,7 @@ export function Services() {
                   <span className={`services__arrow ${isOpen ? 'services__arrow--active' : ''}`}>
                     <ArrowUpRight size="1rem" />
                   </span>
-                </button>
+                </div>
               </li>
             );
           })}
