@@ -5,7 +5,7 @@ import { useApp } from '../../context/AppContext';
 import { smoothScrollTo } from '../../lib/scroll';
 
 export function Portfolio() {
-  const { selectedCategory, setSelectedCategory } = useApp();
+  const { selectedCategory, setSelectedCategory, openModal } = useApp();
   const [eyebrowRevealed, setEyebrowRevealed] = useState(false);
   const [h2Revealed, setH2Revealed] = useState(false);
   const [cardsRevealed, setCardsRevealed] = useState(false);
@@ -39,13 +39,17 @@ export function Portfolio() {
     return () => obs.disconnect();
   }, []);
 
-  const handleCardClick = () => {
-    smoothScrollTo('services');
-  };
-
   const filteredItems = selectedCategory
     ? PORTFOLIO_ITEMS.filter((item) => item.category.toLowerCase() === selectedCategory.toLowerCase())
     : PORTFOLIO_ITEMS;
+
+  const handleCardClick = (item: (typeof PORTFOLIO_ITEMS)[number]) => {
+    if (item.category.toLowerCase() === 'jasa' || item.name.toLowerCase().includes('jasa')) {
+      smoothScrollTo('services');
+    } else {
+      openModal(`Konsultasi Layanan: ${item.name} (${item.category})`);
+    }
+  };
 
   return (
     <section id="works" className="portfolio">
@@ -102,11 +106,16 @@ export function Portfolio() {
             >
               <article
                 className="portfolio__card portfolio__card--clickable"
-                tabIndex={0}
+                onClick={() => handleCardClick(item)}
                 role="button"
-                onClick={handleCardClick}
-                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleCardClick()}
-                aria-label={`Buka layanan ${item.name}`}
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleCardClick(item);
+                  }
+                }}
+                aria-label={`Lihat detail ${item.name}`}
               >
                 <div className="portfolio__card-meta">
                   <span>

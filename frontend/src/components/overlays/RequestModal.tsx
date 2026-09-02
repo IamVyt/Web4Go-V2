@@ -5,10 +5,16 @@ import { useApp } from '../../context/AppContext';
 import { submitRequest } from '../../lib/api';
 
 export function RequestModal() {
-  const { modalOpen, closeModal } = useApp();
+  const { modalOpen, closeModal, prefilledProject, setPrefilledProject } = useApp();
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', project: '' });
+
+  useEffect(() => {
+    if (modalOpen && prefilledProject) {
+      setFormData((prev) => ({ ...prev, project: prefilledProject }));
+    }
+  }, [modalOpen, prefilledProject]);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -28,10 +34,11 @@ export function RequestModal() {
         setIsSuccess(false);
         setIsSubmitting(false);
         setFormData({ name: '', email: '', project: '' });
+        setPrefilledProject('');
       }, 300);
       return () => clearTimeout(timer);
     }
-  }, [modalOpen]);
+  }, [modalOpen, setPrefilledProject]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();

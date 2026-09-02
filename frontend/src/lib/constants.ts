@@ -1,4 +1,4 @@
-import type { PortfolioItem, ServiceItem, StatItem, CardItem, NavItem } from '../types';
+import type { PortfolioItem, ServiceItem, WebsitePackageItem, StatItem, CardItem, NavItem } from '../types';
 
 export const ASSET_BASE_URL = 'https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68';
 
@@ -56,34 +56,97 @@ export const WORK_CATEGORIES = [
   { id: 'Mobile', label: 'Mobile', subtitle: 'iOS & Android Applications' },
 ] as const;
 
+export const WEBSITE_PACKAGES: WebsitePackageItem[] = [
+  {
+    id: 'blog-pribadi',
+    title: 'Blog Pribadi',
+    subtitle: 'Personal Branding & Portofolio Kreator',
+    badge: 'Populer untuk Personal',
+    description: 'Website personal modern, estetik, dan berkecepatan tinggi untuk membangun reputasi profesional, membagikan artikel inspiratif, dan memajang portofolio karya terbaik Anda.',
+    tags: ['CMS Artikel Mudah', 'SEO Ready', 'Super Cepat', 'Desain Estetik'],
+    features: [
+      'Desain elegan & responsif sempurna di Smartphone, Tablet, dan Laptop',
+      'Dashboard admin mudah untuk menulis & kelola artikel tanpa koding',
+      'Optimasi SEO on-page terstruktur agar cepat nangkring di Google',
+      'Integrasi tombol sosial media, form kontak, & newsletter pembaca',
+    ],
+    recommendedFor: 'Penulis, Konten Kreator, Profesional, Freelancer, & Konsultan',
+  },
+  {
+    id: 'website-perusahaan',
+    title: 'Website Perusahaan',
+    subtitle: 'Company Profile & Profil Korporat Bisnis',
+    badge: 'Pilihan Utama Bisnis',
+    description: 'Website profil perusahaan berstandar internasional yang mencerminkan kredibilitas tinggi, memikat calon klien/mitra bisnis, dan mempresentasikan solusi layanan secara profesional.',
+    tags: ['Domain & SSL', 'Email Bisnis Resmi', 'Multi Halaman', 'WhatsApp Chat'],
+    features: [
+      'Struktur halaman lengkap: Tentang Perusahaan, Layanan, Tim, Portofolio, & Kontak',
+      'Setup Custom Domain (.com / .co.id) & Email Bisnis resmi (nama@perusahaan.com)',
+      'Desain UI/UX eksklusif mencerminkan identitas korporat terpercaya',
+      'Integrasi Google Maps, formulir penawaran, & floating WhatsApp chat',
+    ],
+    recommendedFor: 'PT, CV, Startup, Firma Hukum, Kontraktor, Klinik, B2B, & Lembaga Bisnis',
+  },
+  {
+    id: 'toko-online',
+    title: 'Toko Online',
+    subtitle: 'E-Commerce & Sistem Belanja Otomatis',
+    badge: 'Siap Konversi Penjualan',
+    description: 'Platform jualan online otomatis mandiri tanpa potongan komisi pihak ketiga, lengkap dengan etalase produk interaktif, kalkulator ongkir otomatis, dan alur checkout super praktis.',
+    tags: ['Katalog Produk', 'Hitung Ongkir Otomatis', 'Checkout WhatsApp/Payment', 'Manajemen Stok'],
+    features: [
+      'Katalog produk tak terbatas dengan variasi warna/ukuran & galeri foto',
+      'Cek ongkos kirim otomatis terhubung ekspedisi (JNE, J&T, SiCepat, dll)',
+      'Sistem checkout langsung ke WhatsApp admin atau Payment Gateway otomatis',
+      'Panel pengelolaan stok, order masuk, dan laporan penjualan rapi',
+    ],
+    recommendedFor: 'Brand Fashion, Kuliner/F&B, Skincare, Retail, & UMKM Penjual Produk',
+  },
+  {
+    id: 'website-donasi',
+    title: 'Website Donasi',
+    subtitle: 'Platform Crowdfunding & Lembaga Sosial',
+    badge: 'Transparan & Terpercaya',
+    description: 'Sistem penggalangan dana terpercaya untuk yayasan, masjid, dan organisasi sosial dengan integrasi pembayaran donasi instan, laporan transparansi penyaluran, dan kwitansi otomatis.',
+    tags: ['Donasi QRIS Instan', 'Progress Target Dana', 'Laporan Real-time', 'Kwitansi Digital'],
+    features: [
+      'Donasi instan via QRIS, Virtual Account bank, dan e-wallet (GoPay, OVO, Dana)',
+      'Widget progress bar pencapaian dana & update kabar penyaluran berkala',
+      'Daftar donatur transparan dengan opsi donasi anonim (Hamba Allah)',
+      'Generate kwitansi/sertifikat donasi otomatis langsung ke WhatsApp/Email donatur',
+    ],
+    recommendedFor: 'Yayasan Amal, Panti Asuhan, Komunitas Sosial, Rumah Ibadah, & Program Kemanusiaan',
+  },
+];
+
 export const SERVICE_ITEMS: ServiceItem[] = [
   {
     index: '01',
-    title: 'Blog Pribadi',
-    description: 'Website personal branding, artikel, & portofolio karya kreatif.',
-    details: 'Solusi ideal untuk content creator, penulis, praktisi, atau profesional yang ingin membangun personal branding kuat di internet. Dilengkapi dengan sistem manajemen artikel yang simpel, tampilan bersih & estetis, optimasi kecepatan, serta integrasi newsletter dan media sosial.',
-    deliverables: ['Manajemen Artikel / CMS Praktis', 'Desain Minimalis & Fast Loading', 'Integrasi Media Sosial & Kontak', 'SEO Friendly untuk Google'],
+    title: 'Order Layanan',
+    description: 'Pilih paket layanan & konsultasikan kebutuhan bisnis Anda.',
+    details: 'Langkah awal dimulai dengan diskusi mendalam terkait visi proyek, pemilihan spesifikasi teknologi terbaik, penentuan target pengguna, serta penyusunan scope of work dan estimasi timeline yang transparan.',
+    deliverables: ['Konsultasi & Briefing Proyek', 'Scope of Work Terstruktur', 'Estimasi Timeline & Biaya Jelas'],
   },
   {
     index: '02',
-    title: 'Website Perusahaan',
-    description: 'Website korporat modern untuk meningkatkan kredibilitas & prospek bisnis.',
-    details: 'Dirancang khusus untuk perusahaan, CV, PT, startup, atau institusi yang membutuhkan profil bisnis profesional dan meyakinkan. Menampilkan layanan, portfolio klien, testimoni, profil tim, form kontak, dan integrasi WhatsApp instan untuk mendapatkan calon klien baru.',
-    deliverables: ['Struktur Company Profile Lengkap', 'Lead Capture & Form WhatsApp', 'Desain Premium & Mobile Responsive', 'Optimasi Kecepatan & Keamanan SSL'],
+    title: 'Perencanaan Design Web',
+    description: 'Riset visual, wireframe, dan pembuatan UI/UX interaktif.',
+    details: 'Tim desainer kami merancang moodboard, wireframe arsitektur informasi, dan prototype desain antarmuka (UI/UX) presisi tinggi berbasis riset konversi yang disesuaikan dengan identitas brand Anda.',
+    deliverables: ['Wireframing & Moodboard', 'Interactive UI/UX Prototype', 'Design System & Style Guide'],
   },
   {
     index: '03',
-    title: 'Toko Online',
-    description: 'Platform katalog produk & transaksi penjualan otomatis 24/7.',
-    details: 'Website e-commerce lengkap dengan katalog produk terstruktur, sistem keranjang belanja (cart), kalkulasi ongkos kirim otomatis, dashboard manajemen pesanan, serta integrasi pembayaran modern atau checkout via WhatsApp langsung.',
-    deliverables: ['Katalog Produk & Fitur Keranjang', 'Checkout Otomatis / WhatsApp', 'Hitung Ongkir Otomatis Ekspedisi', 'Dashboard Pengelolaan Produk'],
+    title: 'Pengiriman Konten Website',
+    description: 'Integrasi materi, teks persuasif, gambar, dan aset digital.',
+    details: 'Pengumpulan dan pengoptimalan seluruh materi website seperti copywriting berorientasi konversi, gambar high-resolution, aset visual vektor, dan integrasi modul fungsional ke dalam sistem web yang responsif.',
+    deliverables: ['Copywriting Terarah & SEO', 'Asset Media & Grafis High-Res', 'Integrasi Sistem & Fitur Interaktif'],
   },
   {
     index: '04',
-    title: 'Website Donasi',
-    description: 'Platform penggalangan dana & donasi online transparan dan aman.',
-    details: 'Sistem donasi dan crowdfunding online untuk yayasan, lembaga sosial, masjid, komunitas, atau program kemanusiaan. Dilengkapi form donasi instan, progress bar capaian dana donasi, laporan donasi transparan, dan notifikasi konfirmasi donatur secara otomatis.',
-    deliverables: ['Form Donasi Cepat & Multi-Metode', 'Progress Bar Target Donasi Real-time', 'Laporan & Transparansi Dana', 'Notifikasi Donatur via WhatsApp/Email'],
+    title: 'Website Publish',
+    description: 'Pengujian performa, peluncuran domain, dan serah terima aset.',
+    details: 'Uji coba menyeluruh (Quality Assurance, kecepatan loading 99+, optimasi SEO on-page, dan responsivitas mobile), peluncuran ke domain utama, hingga pelatihan pengelolaan website dan garansi support.',
+    deliverables: ['QA Testing & Speed Optimization', 'Go-Live & Setup Custom Domain', 'Garansi Teknis & Dokumentasi Panduan'],
   },
 ];
 

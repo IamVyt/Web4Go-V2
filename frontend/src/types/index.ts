@@ -6,6 +6,17 @@ export interface PortfolioItem {
   tags: string[];
 }
 
+export interface WebsitePackageItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  badge?: string;
+  description: string;
+  tags: string[];
+  features: string[];
+  recommendedFor?: string;
+}
+
 export interface ServiceItem {
   index: string;
   title: string;

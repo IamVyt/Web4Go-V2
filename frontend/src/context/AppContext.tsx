@@ -10,8 +10,10 @@ interface AppContextType {
   openNav: () => void;
   closeNav: () => void;
   modalOpen: boolean;
-  openModal: () => void;
+  openModal: (prefilledText?: string) => void;
   closeModal: () => void;
+  prefilledProject: string;
+  setPrefilledProject: (text: string) => void;
   handleNav: (target: string) => void;
   selectedCategory: string | null;
   setSelectedCategory: (cat: string | null) => void;
@@ -31,6 +33,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [introReady, setIntroReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [prefilledProject, setPrefilledProject] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const [currentView, setCurrentView] = useState<AppView>('home');
@@ -70,7 +73,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     startScroll();
   }, []);
 
-  const openModal = useCallback(() => {
+  const openModal = useCallback((prefilledText?: string) => {
+    if (typeof prefilledText === 'string') {
+      setPrefilledProject(prefilledText);
+    }
     setModalOpen(true);
     stopScroll();
   }, []);
@@ -143,6 +149,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       introReady, setIntroReady,
       navOpen, openNav, closeNav,
       modalOpen, openModal, closeModal,
+      prefilledProject, setPrefilledProject,
       handleNav,
       selectedCategory, setSelectedCategory,
       filterWork,
